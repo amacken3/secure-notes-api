@@ -1,4 +1,5 @@
 from config import app
+from models import User, Note
 
 
 @app.route("/")
