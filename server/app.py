@@ -14,7 +14,7 @@ def get_current_user():
     if not user_id:
         return None
 
-    return User.query.get(user_id)
+    return db.session.get(User, user_id)
 
 @app.route("/signup", methods=["POST"])
 def signup():
@@ -70,7 +70,7 @@ def check_session():
     if not user_id:
         return {"errors": ["Unauthorized"]}, 401
 
-    user = User.query.get(user_id)
+    user = db.session.get(User, user_id)
 
     if not user:
         session.pop("user_id", None)
